@@ -1,0 +1,34 @@
+﻿@model Complain_System.Models.Regular.Complain
+@{
+    ViewData["Title"] = "Update";
+}
+<h2 class="text-info">Update Complain</h2>
+<form asp-action="Update" method="post">
+    <div class="p-4 rounded border">
+        <input type="hidden" asp-for="Id" />
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+        </div>
+        <div class="form-group ">
+            <label asp-for="Details"></label>
+            <input asp-for="Details" class="form-control" />
+            <span asp-validation-for="Details" class="text-danger"></span>
+        </div>
+        <div class="form-group ">
+            <label asp-for="Area"></label>
+            <input asp-for="Area" class="form-control" />
+            <span asp-validation-for="Area" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ComplainCategoryId">Select Category</label>
+            <select asp-for="ComplainCategoryId" asp-items="ViewBag.bId" class="form-control"></select>
+            <span asp-validation-for="ComplainCategoryId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Update" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

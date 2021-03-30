@@ -1,0 +1,84 @@
+﻿@using Complain_System.Models.Regular
+@model IEnumerable<Complain>
+@{
+    ViewData["Title"] = "Index";
+}
+<br /><br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-success">Complains</h2>
+    </div>
+    @*<div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus"></i>&nbsp; Add New???</a>
+        </div>*@
+</div>
+<br />
+<div>
+    <table class="table table-hover table-bordered" id="myTable">
+        <thead>
+            <tr class="table-success">
+                <th>
+                    UserName
+                </th>
+                <th>
+                    ContactNo
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Complain
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName @item.LastName</td>
+                    <td>@item.ContactNo</td>
+                    <td>@item.Email</td>
+                    <td>@item.Details</td>
+                    @*<td>
+                            <partial name="_ButtonPartial" model="@item.Id" />
+                        </td>*@
+                    <td>
+                        <a asp-action="Delete" asp-controller="Complain" class="btn btn-warning" asp-route-id="@item.Id">
+                            Solved???
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready( function (){
+            $('#myTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+        $(function(){
+            var save = '@TempData["save"]'
+            if(save!='') {
+                alertify.success(save);
+            }
+            var edit = '@TempData["edit"]'
+            if(edit!='') {
+                alertify.success(edit);
+            }
+            var del = '@TempData["delete"]'
+            if (del!='') {
+                alertify.error(del);
+            }
+        })
+    </script>
+}

@@ -1,0 +1,35 @@
+﻿
+@model Complain_System.Models.Regular.Complain
+@{
+    ViewData["Title"] = "Complain";
+}
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+        <form method="post" enctype="multipart/form-data" asp-controller="Account" asp-action="create" class="mt-3">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div>
+                <h1 align="center">Create Complain</h1>
+            </div>
+            <div class="form-group">
+                <label asp-for="ComplainCategoryId">Select Category</label>
+                <select asp-for="ComplainCategoryId" asp-items="ViewBag.bId" class="form-control"></select>
+                <span asp-validation-for="ComplainCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group ">
+                <label asp-for="Details"></label>
+                <input asp-for="Details" class="form-control" />
+                <span asp-validation-for="Details" class="text-danger"></span>
+            </div>
+            <div class="form-group ">
+                <label asp-for="Area"></label>
+                <input asp-for="Area" class="form-control" />
+                <span asp-validation-for="Area" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" align="center">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>
